@@ -32,7 +32,7 @@ Shortcut connections are used to connect all pairs of 3x3 convolutions. For down
 We implement the ResNets corresponding to n={3,5,7,9}. The paper also introduces two larger ResNets, ResNet110 and ResNet1202 which correspond to n={18,200}. We skip these as the models are too large and time consuming for training on a single GTX 1070 (ResNet1202, for example, requires 16gb(!) of VRAM). In addition, as mentioned in the paper, ResNet1202 actually has worse performance than ResNet32, most likely due to overparameterization. 
 
 # Training Process
-The models are trained on an augmented dataset (random 32x32 crop on a padded image and random horizontal flips applied). A batch size of 128 is used and the model is optimized using SGD with momentum with a starting learning rate of 0.01. Finally, we use Kaiming initialization for all model weights. 
+The models are trained on an augmented dataset (random 32x32 crop on a padded image and random horizontal flips applied). A batch size of 128 is used and the model is optimized using SGD with momentum with a starting learning rate of 0.1. Finally, we use Kaiming initialization for all model weights. 
 
 The paper outlines dividing the learning rate by 10 at 32k and 48k iterations and ceasing training at 64k iterations. This corresponds to decreasing the learning rate at 90 and 135 epochs and ceasing training at 180 epochs. In our implementation this, training scheduling worked well for ResNet20 and ResNet32. The two larger ResNets benefitted from training for more epochs (200 instead of 180). 
 
